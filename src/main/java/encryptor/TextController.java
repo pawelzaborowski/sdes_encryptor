@@ -2,29 +2,24 @@ package encryptor;
 
 public class TextController {
 
-    private int[] key_p;
     private int[] text;
     private int[] k1;
     private int[] result;
 
-    public TextController(int[] key_p, int[] text, int[] k1){
+    public TextController(int[] text, int[] k1){
         this.result = new int[8];
-        this.key_p = key_p;
         this.text = text;
         this.k1 = k1;
     }
 
     public int[] Encrypt(){
 
-        Controller textController = new Controller(this.key_p, this.text);
+        Controller textController = new Controller();
 
         Object obj[] = textController.Split(this.text);
 
-        int[] double_second = textController.P4w8((int[]) obj[0]);
+        int[] double_second = textController.P4w8((int[]) obj[1]);
         int[] xor_with_key_first_round = new int[8];
-
-        int i = 0;
-
 
         for(int j = 0; j < xor_with_key_first_round.length; j++) {
             xor_with_key_first_round[j] = textController.xor(this.k1[j], double_second[j]);
@@ -51,7 +46,7 @@ public class TextController {
 
         int[] last_4_text = new int[4];
         for (int j = 0; j < 4; j++) {
-            last_4_text[i] = text[i+4];
+            last_4_text[j] = text[j + 4];
         }
 
         this.result = textController.Merge(xored, last_4_text);

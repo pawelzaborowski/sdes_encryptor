@@ -2,13 +2,6 @@ package encryptor;
 
 public class Controller implements encryptionInterface{
 
-    private int[] key_p;
-    private int[] text;
-
-    public Controller(int[] key_p, int[] text){
-        this.key_p = key_p;
-        this.text = text;
-    }
 
     @Override
     public Object[] Split(int[] array_to_split) {
@@ -29,11 +22,11 @@ public class Controller implements encryptionInterface{
 
 
         while(cycles-- > 0) {
+            int first_value = array_to_shift[0];
             for (int i = 0; i < array_to_shift.length - 1; i++) {
-                int first_value = array_to_shift[0];
                 array_to_shift[i] = array_to_shift[i + 1];
-                array_to_shift[array_to_shift.length - 1] = first_value;
             }
+            array_to_shift[array_to_shift.length - 1] = first_value;
         }
 
         return array_to_shift;
@@ -51,19 +44,19 @@ public class Controller implements encryptionInterface{
         return merged;
     }
 
-    public int[] P10(){
+    public int[] P10(int[] key_p){
 
         int[] temp = new int[10];
-        temp[0] = this.key_p[2];
-        temp[1] = this.key_p[4];
-        temp[2] = this.key_p[1];
-        temp[3] = this.key_p[6];
-        temp[4] = this.key_p[3];
-        temp[5] = this.key_p[9];
-        temp[6] = this.key_p[0];
-        temp[7] = this.key_p[8];
-        temp[8] = this.key_p[7];
-        temp[9] = this.key_p[5];
+        temp[0] = key_p[2];
+        temp[1] = key_p[4];
+        temp[2] = key_p[1];
+        temp[3] = key_p[6];
+        temp[4] = key_p[3];
+        temp[5] = key_p[9];
+        temp[6] = key_p[0];
+        temp[7] = key_p[8];
+        temp[8] = key_p[7];
+        temp[9] = key_p[5];
 
         return temp;
     }
@@ -79,7 +72,7 @@ public class Controller implements encryptionInterface{
         temp[5] = to_perm[4];
         temp[6] = to_perm[9];
         temp[7] = to_perm[8];
-        
+
 
         return temp;
     }

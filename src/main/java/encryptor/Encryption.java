@@ -1,18 +1,11 @@
 package encryptor;
 
 import java.io.IOException;
-import java.io.InputStream;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Encryption {
-
-    private int[] key_p, text;
-
-    public Encryption() throws IOException {
-
-
-    }
 
 
     public static void main(String[] args) throws IOException {
@@ -47,11 +40,11 @@ public class Encryption {
         }
 
 
-        KeyController keyController = new KeyController(key_p, text);
+        KeyController keyController = new KeyController(key_p);
         Object keys[] = keyController.Encrypt();
 
 
-        TextController textController = new TextController(key_p, text, (int[])keys[0]);
+        TextController textController = new TextController(text, (int[])keys[0]);
         int[] result = textController.Encrypt();
 
         System.out.print(Arrays.toString(result));
