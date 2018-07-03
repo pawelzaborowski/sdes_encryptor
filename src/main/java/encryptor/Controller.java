@@ -114,6 +114,36 @@ public class Controller implements encryptionInterface{
         return temp;
     }
 
+    public int[] PO(int[] to_perm){
+
+        int[] temp = new int[8];
+        temp[0] = to_perm[3];
+        temp[1] = to_perm[0];
+        temp[2] = to_perm[2];
+        temp[3] = to_perm[4];
+        temp[4] = to_perm[6];
+        temp[5] = to_perm[1];
+        temp[6] = to_perm[7];
+        temp[7] = to_perm[5];
+
+        return temp;
+    }
+
+    public int[] PW(int[] to_perm){
+
+        int[] temp = new int[8];
+        temp[0] = to_perm[1];
+        temp[1] = to_perm[5];
+        temp[2] = to_perm[2];
+        temp[3] = to_perm[0];
+        temp[4] = to_perm[3];
+        temp[5] = to_perm[7];
+        temp[6] = to_perm[4];
+        temp[7] = to_perm[6];
+
+        return temp;
+    }
+
     public int xorBits(int a, int b){
         if(a != b){
             return 1;
