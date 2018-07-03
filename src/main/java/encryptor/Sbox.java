@@ -25,141 +25,130 @@ public class Sbox {
             }
         }
 
-
-        if (in_s.toString().charAt(0) == '0' & in_s.toString().charAt(1) == '0') {
-
-            if (in_s.toString().charAt(2) == '0' & in_s.toString().charAt(3) == '0') {
-                this.sbox1[0] = 0;
-                this.sbox1[1] = 1;
-            } else if (in_s.toString().charAt(2) == '0' & in_s.toString().charAt(3) == '1') {
-                this.sbox1[0] = 1;
-                this.sbox1[1] = 1;
-            } else if (in_s.toString().charAt(2) == '1' & in_s.toString().charAt(3) == '0') {
-                this.sbox1[0] = 0;
-                this.sbox1[1] = 0;
-            } else if (in_s.toString().charAt(2) == '1' & in_s.toString().charAt(3) == '1') {
-                this.sbox1[0] = 1;
-                this.sbox1[1] = 0;
-            }
+        String first_two = String.valueOf(in_s.toString().charAt(0) + in_s.toString().charAt(1));
+        String last_two = String.valueOf(in_s.toString().charAt(2) + in_s.toString().charAt(3));
 
 
-        } else if (in_s.toString().charAt(0) == '0' & in_s.toString().charAt(1) == '1') {
+        switch (first_two) {
+            case "00":
 
-            if (in_s.toString().charAt(2) == '0' & in_s.toString().charAt(3) == '0') {
-                this.sbox1[0] = 1;
-                this.sbox1[1] = 1;
-            } else if (in_s.toString().charAt(2) == '0' & in_s.toString().charAt(3) == '1') {
-                this.sbox1[0] = 0;
-                this.sbox1[1] = 1;
-            } else if (in_s.toString().charAt(2) == '1' & in_s.toString().charAt(3) == '0') {
-                this.sbox1[0] = 1;
-                this.sbox1[1] = 0;
-            } else if (in_s.toString().charAt(2) == '1' & in_s.toString().charAt(3) == '1') {
-                this.sbox1[0] = 0;
-                this.sbox1[1] = 0;
-            }
+                switch (last_two) {
 
-        } else if (in_s.toString().charAt(0) == '1' & in_s.toString().charAt(1) == '0') {
+                    case "00":
+                        this.sbox1[0] = 0;
+                        this.sbox1[1] = 1;
+                        this.sbox2[0] = 0;
+                        this.sbox2[1] = 0;
 
-            if (in_s.toString().charAt(2) == '0' & in_s.toString().charAt(3) == '0') {
-                this.sbox1[0] = 0;
-                this.sbox1[1] = 0;
-            } else if (in_s.toString().charAt(2) == '0' & in_s.toString().charAt(3) == '1') {
-                this.sbox1[0] = 1;
-                this.sbox1[1] = 1;
-            } else if (in_s.toString().charAt(2) == '1' & in_s.toString().charAt(3) == '0') {
-                this.sbox1[0] = 0;
-                this.sbox1[1] = 1;
-            } else if (in_s.toString().charAt(2) == '1' & in_s.toString().charAt(3) == '1') {
-                this.sbox1[0] = 0;
-                this.sbox1[1] = 1;
-            }
+                    case "01":
+                        this.sbox1[0] = 1;
+                        this.sbox1[1] = 1;
+                        this.sbox2[0] = 1;
+                        this.sbox2[1] = 0;
 
-        } else if (in_s.toString().charAt(0) == '1' & in_s.toString().charAt(1) == '1') {
+                    case "10":
+                        this.sbox1[0] = 0;
+                        this.sbox1[1] = 0;
+                        this.sbox2[0] = 0;
+                        this.sbox2[1] = 1;
 
-            if (in_s.toString().charAt(2) == '0' & in_s.toString().charAt(3) == '0') {
-                this.sbox1[0] = 0;
-                this.sbox1[1] = 1;
-            } else if (in_s.toString().charAt(2) == '0' & in_s.toString().charAt(3) == '1') {
-                this.sbox1[0] = 1;
-                this.sbox1[1] = 1;
-            } else if (in_s.toString().charAt(2) == '1' & in_s.toString().charAt(3) == '0') {
-                this.sbox1[0] = 1;
-                this.sbox1[1] = 1;
-            } else if (in_s.toString().charAt(2) == '1' & in_s.toString().charAt(3) == '1') {
-                this.sbox1[0] = 1;
-                this.sbox1[1] = 0;
-            }
+                    case "11":
+                        this.sbox1[0] = 1;
+                        this.sbox1[1] = 0;
+                        this.sbox2[0] = 0;
+                        this.sbox2[1] = 0;
+                }
+                break;
+            case "01":
 
+                switch (last_two) {
+
+                    case "00":
+                        this.sbox1[0] = 1;
+                        this.sbox1[1] = 1;
+                        this.sbox2[0] = 1;
+                        this.sbox2[1] = 0;
+
+                    case "01":
+                        this.sbox1[0] = 0;
+                        this.sbox1[1] = 1;
+                        this.sbox2[0] = 0;
+                        this.sbox2[1] = 1;
+
+                    case "10":
+                        this.sbox1[0] = 1;
+                        this.sbox1[1] = 0;
+                        this.sbox2[0] = 1;
+                        this.sbox2[1] = 1;
+
+                    case "11":
+                        this.sbox1[0] = 0;
+                        this.sbox1[1] = 0;
+                        this.sbox2[0] = 1;
+                        this.sbox2[1] = 1;
+                }
+
+                break;
+            case "10":
+
+                switch (last_two) {
+
+                    case "00":
+                        this.sbox1[0] = 0;
+                        this.sbox1[1] = 0;
+                        this.sbox2[0] = 1;
+                        this.sbox2[1] = 1;
+
+                    case "01":
+                        this.sbox1[0] = 1;
+                        this.sbox1[1] = 1;
+                        this.sbox2[0] = 1;
+                        this.sbox2[1] = 0;
+
+                    case "10":
+                        this.sbox1[0] = 0;
+                        this.sbox1[1] = 1;
+                        this.sbox2[0] = 0;
+                        this.sbox2[1] = 0;
+
+                    case "11":
+                        this.sbox1[0] = 0;
+                        this.sbox1[1] = 1;
+                        this.sbox2[0] = 0;
+                        this.sbox2[1] = 1;
+                }
+                break;
+            default:
+
+                switch (last_two) {
+
+                    case "00":
+                        this.sbox1[0] = 0;
+                        this.sbox1[1] = 1;
+                        this.sbox2[0] = 0;
+                        this.sbox2[1] = 1;
+
+                    case "01":
+                        this.sbox1[0] = 1;
+                        this.sbox1[1] = 1;
+                        this.sbox2[0] = 0;
+                        this.sbox2[1] = 0;
+
+                    case "10":
+                        this.sbox1[0] = 1;
+                        this.sbox1[1] = 1;
+                        this.sbox2[0] = 0;
+                        this.sbox2[1] = 0;
+
+                    case "11":
+                        this.sbox1[0] = 1;
+                        this.sbox1[1] = 0;
+                        this.sbox2[0] = 1;
+                        this.sbox2[1] = 1;
+                }
+                break;
         }
 
-
-        if (in_s.toString().charAt(0) == '0' & in_s.toString().charAt(1) == '0') {
-
-            if (in_s.toString().charAt(2) == '0' & in_s.toString().charAt(3) == '0') {
-                this.sbox2[0] = 0;
-                this.sbox2[1] = 0;
-            } else if (in_s.toString().charAt(2) == '0' & in_s.toString().charAt(3) == '1') {
-                this.sbox2[0] = 1;
-                this.sbox2[1] = 0;
-            } else if (in_s.toString().charAt(2) == '1' & in_s.toString().charAt(3) == '0') {
-                this.sbox2[0] = 0;
-                this.sbox2[1] = 1;
-            } else if (in_s.toString().charAt(2) == '1' & in_s.toString().charAt(3) == '1') {
-                this.sbox2[0] = 0;
-                this.sbox2[1] = 0;
-            }
-
-
-        } else if (in_s.toString().charAt(0) == '0' & in_s.toString().charAt(1) == '1') {
-
-            if (in_s.toString().charAt(2) == '0' & in_s.toString().charAt(2) == '0') {
-                this.sbox2[0] = 1;
-                this.sbox2[1] = 0;
-            } else if (in_s.toString().charAt(3) == '0' & in_s.toString().charAt(2) == '1') {
-                this.sbox2[0] = 0;
-                this.sbox2[1] = 1;
-            } else if (in_s.toString().charAt(3) == '1' & in_s.toString().charAt(2) == '0') {
-                this.sbox2[0] = 1;
-                this.sbox2[1] = 1;
-            } else if (in_s.toString().charAt(3) == '1' & in_s.toString().charAt(2) == '1') {
-                this.sbox2[0] = 1;
-                this.sbox2[1] = 1;
-            }
-
-        } else if (in_s.toString().charAt(0) == '1' & in_s.toString().charAt(1) == '0') {
-
-            if (in_s.toString().charAt(2) == '0' & in_s.toString().charAt(1) == '0') {
-                this.sbox2[0] = 1;
-                this.sbox2[1] = 1;
-            } else if (in_s.toString().charAt(2) == '0' & in_s.toString().charAt(3) == '1') {
-                this.sbox2[0] = 1;
-                this.sbox2[1] = 0;
-            } else if (in_s.toString().charAt(2) == '1' & in_s.toString().charAt(3) == '0') {
-                this.sbox2[0] = 0;
-                this.sbox2[1] = 0;
-            } else if (in_s.toString().charAt(2) == '1' & in_s.toString().charAt(3) == '1') {
-                this.sbox2[0] = 0;
-                this.sbox2[1] = 1;
-            }
-
-        } else if (in_s.toString().charAt(0) == '1' & in_s.toString().charAt(1) == '1') {
-
-            if (in_s.toString().charAt(2) == '0' & in_s.toString().charAt(3) == '0') {
-                this.sbox2[0] = 0;
-                this.sbox2[1] = 1;
-            } else if (in_s.toString().charAt(2) == '0' & in_s.toString().charAt(3) == '1') {
-                this.sbox2[0] = 0;
-                this.sbox2[1] = 0;
-            } else if (in_s.toString().charAt(2) == '1' & in_s.toString().charAt(3) == '0') {
-                this.sbox2[0] = 0;
-                this.sbox2[1] = 0;
-            } else if (in_s.toString().charAt(2) == '1' & in_s.toString().charAt(3) == '1') {
-                this.sbox2[0] = 1;
-                this.sbox2[1] = 1;
-            }
-
-        }
 
         if (version == 1) {
             return sbox1;

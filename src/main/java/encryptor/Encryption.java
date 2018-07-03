@@ -44,11 +44,11 @@ public class Encryption {
 
 
         KeyController keyController = new KeyController(key_p);
-        Object keys[] = keyController.Encrypt();
+        Object keys[] = keyController.encrypt();
 
 
-        TextController textController = new TextController(text, (int[])keys[0]);
-        int[] result = textController.Encrypt();
+        TextController textController = new TextController(text, (int[])keys[0], (int[])keys[1]);
+        int[] result = textController.encrypt();
 
         System.out.print(Arrays.toString(result));
     }

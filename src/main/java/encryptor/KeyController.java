@@ -13,29 +13,34 @@ public class KeyController {
         this.key_p = key_p;
     }
 
-    public Object[] Encrypt(){
+    public Object[] encrypt(){
 
         Controller keyController = new Controller();
 
         int[] array_after_P10 = keyController.P10(this.key_p);
 
-        Object obj[] = keyController.Split(array_after_P10);
+        Object obj[] = keyController.split(array_after_P10);
 
-        int[] k1_0 = keyController.ShiftLeft((int[]) obj[0], 1);;
-        int[] k2_0 = keyController.ShiftLeft((int[]) obj[1], 1);;
+        int[] k1_0 = keyController.shiftLeft((int[]) obj[0], 1);;
+        int[] k2_0 = keyController.shiftLeft((int[]) obj[1], 1);;
 
 
-        int[] to_merge = keyController.Merge(k1_0, k2_0);
+        int[] to_merge = keyController.merge(k1_0, k2_0);
         to_merge = keyController.P10w8(to_merge);
         this.k1 = to_merge;
 
-        int[] k1_temp = keyController.ShiftLeft((int[]) obj[0], 2);
-        int[] k2_temp  = keyController.ShiftLeft((int[]) obj[1], 2);
+        int[] k1_temp = keyController.shiftLeft((int[]) obj[0], 2);
+        int[] k2_temp  = keyController.shiftLeft((int[]) obj[1], 2);
 
-        this.k2 = keyController.Merge(k1_temp, k2_temp);
+        this.k2 = keyController.merge(k1_temp, k2_temp);
         this.k2 = keyController.P10w8(this.k2);
+
         return new Object[]{this.k1, this.k2};
 
     }
-    
+
+    public int[] getK1(){
+        return this.k1;
+    }
+
 }

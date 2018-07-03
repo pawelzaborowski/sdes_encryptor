@@ -4,7 +4,7 @@ public class Controller implements encryptionInterface{
 
 
     @Override
-    public Object[] Split(int[] array_to_split) {
+    public Object[] split(int[] array_to_split) {
 
         int[] k1_0 = new int[array_to_split.length / 2];
         int[] k2_0 = new int[array_to_split.length / 2];
@@ -18,7 +18,7 @@ public class Controller implements encryptionInterface{
     }
 
     @Override
-    public int[] ShiftLeft(int[] array_to_shift, int cycles) {
+    public int[] shiftLeft(int[] array_to_shift, int cycles) {
 
 
         while(cycles-- > 0) {
@@ -33,7 +33,7 @@ public class Controller implements encryptionInterface{
     }
 
     @Override
-    public int[] Merge(int[] array_to_merge1, int[] array_to_merge2) {
+    public int[] merge(int[] array_to_merge1, int[] array_to_merge2) {
 
         int[] merged = new int[array_to_merge1.length + array_to_merge2.length];
         for(int i = 0; i < array_to_merge1.length; i++){
@@ -42,6 +42,17 @@ public class Controller implements encryptionInterface{
             merged[i+array_to_merge1.length] = array_to_merge2[i];
         }
         return merged;
+    }
+
+    @Override
+    public int[] swapBits(int[] array_to_swap){
+        int[] temp = new int[4];
+        for(int i = 0; i < array_to_swap.length / 2; i++){
+            temp[i] = array_to_swap[i];
+            array_to_swap[i] = array_to_swap[i + array_to_swap.length / 2];
+            array_to_swap[i + array_to_swap.length / 2] = temp[i];
+        }
+        return array_to_swap;
     }
 
     public int[] P10(int[] key_p){
@@ -103,14 +114,21 @@ public class Controller implements encryptionInterface{
         return temp;
     }
 
-    public int xor(int a, int b){
+    public int xorBits(int a, int b){
         if(a != b){
             return 1;
         }
         else{
             return 0;
         }
+    }
 
+    public int[] xor(int[] a, int[] b){
+        int[] temp = new int[a.length];
+         for(int j = 0; j < a.length; j++) {
+            temp[j] = this.xorBits(a[j], b[j]);
+        }
+        return temp;
     }
 
 }
