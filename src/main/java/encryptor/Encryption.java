@@ -15,7 +15,7 @@ public class Encryption {
         Scanner scanner = new Scanner(System.in);
         int j = 0;
 
-        while (scanner.hasNext() && j < 10) {
+        while (j < 10) {
 
              if (scanner.hasNextInt()) {
                 key_p[j] = scanner.nextInt();
@@ -29,6 +29,9 @@ public class Encryption {
              if (scanner.hasNextInt()) {
                 text[j] = scanner.nextInt();
                 j++;
+             }
+             else{
+                 break;
              }
         }
 
