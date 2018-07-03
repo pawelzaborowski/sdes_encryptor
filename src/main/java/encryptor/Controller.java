@@ -2,57 +2,58 @@ package encryptor;
 
 public class Controller implements encryptionInterface{
 
-    private byte[] key_p;
-    private byte[] text;
+    private int[] key_p;
+    private int[] text;
 
-    public Controller(byte[] key_p, byte[] text){
+    public Controller(int[] key_p, int[] text){
         this.key_p = key_p;
         this.text = text;
     }
 
     @Override
-    public Object[] Split(byte[] array_to_split) {
+    public Object[] Split(int[] array_to_split) {
 
-        byte[] k1_0 = new byte[5];
-        byte[] k2_0 = new byte[5];
+        int[] k1_0 = new int[array_to_split.length / 2];
+        int[] k2_0 = new int[array_to_split.length / 2];
 
-        for (int i = 0; i < array_to_split.length; i++){
+        for (int i = 0; i < array_to_split.length / 2; i++){
             k1_0[i] = array_to_split[i];
-            k2_0[i] = array_to_split[i+ 5];
+            k2_0[i] = array_to_split[i + array_to_split.length / 2];
         }
 
         return new Object[]{k1_0, k2_0};
     }
 
     @Override
-    public byte[] ShiftLeft(byte[] array_to_shift, int cycles) {
+    public int[] ShiftLeft(int[] array_to_shift, int cycles) {
 
-        byte[] temp = new byte[array_to_shift.length];
 
-        for (int i = 0; i < array_to_shift.length - 1; i++){
-            byte first_value = array_to_shift[0];
-            array_to_shift[i] = array_to_shift[i+1];
-            array_to_shift[array_to_shift.length - 1] = first_value;
+        while(cycles-- > 0) {
+            for (int i = 0; i < array_to_shift.length - 1; i++) {
+                int first_value = array_to_shift[0];
+                array_to_shift[i] = array_to_shift[i + 1];
+                array_to_shift[array_to_shift.length - 1] = first_value;
+            }
         }
 
-        return temp;
+        return array_to_shift;
     }
 
     @Override
-    public byte[] Merge(byte[] array_to_merge1, byte[] array_to_merge2) {
+    public int[] Merge(int[] array_to_merge1, int[] array_to_merge2) {
 
-        byte[] merged = new byte[10];
+        int[] merged = new int[array_to_merge1.length + array_to_merge2.length];
         for(int i = 0; i < array_to_merge1.length; i++){
 
             merged[i] = array_to_merge1[i];
-            merged[i+5] = array_to_merge2[i];
+            merged[i+array_to_merge1.length] = array_to_merge2[i];
         }
         return merged;
     }
 
-    public byte[] P10(){
+    public int[] P10(){
 
-        byte[] temp = new byte[10];
+        int[] temp = new int[10];
         temp[0] = this.key_p[2];
         temp[1] = this.key_p[4];
         temp[2] = this.key_p[1];
@@ -67,9 +68,9 @@ public class Controller implements encryptionInterface{
         return temp;
     }
 
-       public byte[] P10w8(byte[] to_perm){
+       public int[] P10w8(int[] to_perm){
 
-        byte[] temp = new byte[8];
+        int[] temp = new int[8];
         temp[0] = to_perm[5];
         temp[1] = to_perm[2];
         temp[2] = to_perm[6];
@@ -78,18 +79,14 @@ public class Controller implements encryptionInterface{
         temp[5] = to_perm[4];
         temp[6] = to_perm[9];
         temp[7] = to_perm[8];
-
-        to_perm = temp;
-
-//        temp[8] = to_perm[7];
-//        temp[9] = to_perm[5];
+        
 
         return temp;
     }
 
-    public byte[] P4w8(byte[] to_perm){
+    public int[] P4w8(int[] to_perm){
 
-        byte[] temp = new byte[8];
+        int[] temp = new int[8];
         temp[0] = to_perm[3];
         temp[1] = to_perm[0];
         temp[2] = to_perm[1];
@@ -102,15 +99,25 @@ public class Controller implements encryptionInterface{
         return temp;
     }
 
-     public byte[] P4(byte[] to_perm){
+     public int[] P4(int[] to_perm){
 
-        byte[] temp = new byte[4];
+        int[] temp = new int[4];
         temp[0] = to_perm[1];
         temp[1] = to_perm[3];
         temp[2] = to_perm[2];
         temp[3] = to_perm[0];
 
         return temp;
+    }
+
+    public int xor(int a, int b){
+        if(a != b){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+
     }
 
 }
