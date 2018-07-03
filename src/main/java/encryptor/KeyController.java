@@ -5,12 +5,19 @@ public class KeyController {
 
     private byte[] key_p;
     private byte[] text;
-    private static byte[] k1, k2;
+    private byte[] k1, k2;
 
-    public void Encrypt(){
+    public KeyController(byte[] key_p, byte[] text){
+        this.k1 = new byte[8];
+        this.k2 = new byte[8];
+        this.key_p = key_p;
+        this.text = text;
+    }
 
-        key_p = new byte[10];
-        text = new byte[8];
+    public Object[] Encrypt(){
+
+        this.key_p = new byte[10];
+        this.text = new byte[8];
         Controller keyController = new Controller(key_p, text);
 
         byte[] array_after_P10 = keyController.P10();
@@ -23,12 +30,14 @@ public class KeyController {
 
         byte[] to_merge = keyController.Merge(k1_0, k2_0);
         to_merge = keyController.P10w8(to_merge);
-        byte[] k1 = to_merge;
+        this.k1 = to_merge;
 
         byte[] k1_temp = keyController.ShiftLeft((byte[]) obj[0], 2);
         byte[] k2_temp  = keyController.ShiftLeft((byte[]) obj[1], 2);
 
-        byte[] k2 = keyController.Merge(k1_temp, k2_temp);
+        this.k2 = keyController.Merge(k1_temp, k2_temp);
+
+        return new Object[]{this.k1, this.k2};
 
     }
 }
